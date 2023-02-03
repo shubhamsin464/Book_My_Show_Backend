@@ -1,17 +1,20 @@
 package BookMyShow.BookMyShow.Models;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name="User")
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -19,7 +22,10 @@ public class User {
     @Column(name = "User Name")
     private String name;
 
-    @Column(nullable = true, length = 10)
     private int mobile;
-    private List<Tickets> ticketsbooked;
+
+
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    private List<TicketEntity> ticketsList;
 }

@@ -7,30 +7,29 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "Theater")
+@Table(name = "Movie")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TheaterEntity {
+public class MovieEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "MovieName",nullable = false,unique = true)
     private String name;
 
-    private String address;
 
-    private String city;
+    private Date releaseDate;
 
-    @OneToMany(mappedBy = "theater", cascade = CascadeType.ALL)
-    List<ShowEntity> listOfShows;
+    private int duration;
 
-    @OneToMany(mappedBy = "theater",cascade = CascadeType.ALL)
-    List<TheaterSeatEntity> theaterSeat;
-
-
+    @OneToMany(mappedBy = "movie",cascade = CascadeType.ALL)
+    private List<ShowEntity> listOfShows;
 }
