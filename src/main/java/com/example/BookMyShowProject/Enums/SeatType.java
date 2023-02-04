@@ -1,4 +1,4 @@
-package BookMyShow.BookMyShow.Enums;
+package com.example.BookMyShowProject.Enums;
 
 public enum SeatType {
     CLASSIC,
